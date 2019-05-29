@@ -13,13 +13,6 @@ install.packages("DBI")
 
 
 ```{r}
-db <- dbConnect(RSQLite::SQLite(), "")
-dbWriteTable(db, "mtcars", mtcars)
-dbListTables(db)
-```
-
-
-```{r}
 vehicledata = DBI::dbConnect(RSQLite::SQLite(), "vehicledata.sqlite")
 dbDisconnect(vehicledata)
 unlink("vehicledata.sqlite")
@@ -64,7 +57,19 @@ SELECT * FROM cardata
 ```
 
 ```{sql, connection = vd}
+INSERT INTO cardata VALUES (18, "Buick", "Regal", "GS", 310, 6), (19, "Buick", "Enclave", "Premier", 310, 6), (20, "Cadillac", "CTS", "V", 640, 8), (21, "Cadillac", "ATS", "V", 464, 6), (22, "Chevrolet", "SS", "NA", 415, 8)
+```
+```{sql, connection = vd}
+SELECT * FROM cardata
+
+```
+
+
+
+```{sql, connection = vd}
 INSERT INTO aspiration VALUES (1, "Turbocharged"), (2, "Turbocharged"), (3, "NA"), (4, "Supercharged"), (5, "Supercharged"), (6, "Supercharged"), (7, "NA"), (8, "Turbocharged"), (9, "NA"), (10, "NA"), (11, "Supercharged"), (12, "NA"), (13, "NA"), (14, "NA"), (15, "Turbocharged"), (16, "NA"),(17,"NA")
+```
+```{r}
 ```
 
 ```{sql, connection = vd}
@@ -77,5 +82,26 @@ FROM cardata
 INNER JOIN aspiration
 ON cardata.id = aspiration.id
 ```
+```{sql, connection = vd}
+SELECT AVG(hp) AS average_horsepower FROM cardata
 
+```
+```{sql, connection = vd}
+SELECT * FROM cardata
+
+```
+
+
+
+```{sql, connection = vd}
+INSERT INTO cardata VALUES(23, "Toyota", "Camry", "XLE V6", 301, 6), (24, "Toyota", "Land Cruiser", "NA", 381, 8), (25, "Toyota", "4Runner", "Base", 270, 6), (26, "Cadillac", "Escalade", "Premium Luxury", 420, 8)
+```
+
+```{sql, connection = vd}
+INSERT INTO cardata VALUES (27, "Kia", "Stinger", "GT", 365, 6), (28, "Genesis", "G70", "Top", 365, 6)
+```
+
+```{sql, connection = vd}
+SELECT * FROM cardata
+```
 
