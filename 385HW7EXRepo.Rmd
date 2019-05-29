@@ -1,0 +1,46 @@
+---
+title: "385HW7EX"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+install.packages("RSQLite")
+install.packages("DBI")
+```
+
+
+```{r}
+db <- dbConnect(RSQLite::SQLite(), "")
+dbWriteTable(db, "mtcars", mtcars)
+dbListTables(db)
+```
+
+
+```{r}
+vehicledata = DBI::dbConnect(RSQLite::SQLite(), "vehicledata.sqlite")
+dbDisconnect(vehicledata)
+unlink("vehicledata.sqlite")
+vd = dbConnect(RSQLite::SQLite(), "")
+```
+
+```{sql, connection = vd}
+CREATE TABLE vehicles (make TEXT, model TEXT, trim TEXT, hp INTEGER)
+```
+```{sql, connection = vd}
+INSERT INTO vehicles VALUES ("Chevrolet", "Crovette", "Z06", 640), ("Ford","Mustang", "GT", 480), ("Mazda", "Miata", "RF", 185)
+```
+
+
+```{sql, connection = vd}
+INSERT INTO vehicles VALUES ("Ford", "Focus", "ST", 250), ("Volkswagen", "Golf", "GTI", "220"), ("Dodge", "Challenger", "ScatPak", 485), ("Dodge", "Challenger", "Hellcat", 707), ("Dodge", "Challenger", "Hellcat Redeye", 797), ("Jeep", "Grand Cherokee", "TrackHawk", 707), ("Honda", "Civic", "Si", 202), ("Honda", "Civic", "Type R", 303)
+```
+```{sql, connection = vd}
+SELECT * FROM vehicles
+ORDER BY hp DESC
+
+```
+
+
