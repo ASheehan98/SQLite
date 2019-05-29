@@ -38,9 +38,22 @@ INSERT INTO vehicles VALUES ("Chevrolet", "Crovette", "Z06", 640), ("Ford","Must
 INSERT INTO vehicles VALUES ("Ford", "Focus", "ST", 250), ("Volkswagen", "Golf", "GTI", "220"), ("Dodge", "Challenger", "ScatPak", 485), ("Dodge", "Challenger", "Hellcat", 707), ("Dodge", "Challenger", "Hellcat Redeye", 797), ("Jeep", "Grand Cherokee", "TrackHawk", 707), ("Honda", "Civic", "Si", 202), ("Honda", "Civic", "Type R", 303)
 ```
 ```{sql, connection = vd}
-SELECT * FROM vehicles
-ORDER BY hp DESC
-
+CREATE TABLE cardata (id INTEGER, make TEXT, model TEXT, trim TEXT, hp INTEGER, cylinders INTEGER)
 ```
 
+
+```{sql, connection = vd}
+INSERT INTO cardata VALUES (1, "Ford", "Focus", "ST", 250, 4), (2, "Volkswagen", "Golf", "GTI", "220", 4), (3, "Dodge", "Challenger", "ScatPak", 485,8), (4, "Dodge", "Challenger", "Hellcat", 707,8), (5, "Dodge", "Challenger", "Hellcat Redeye", 797,8), (6, "Jeep", "Grand Cherokee", "TrackHawk", 707,8), (7, "Honda", "Civic", "Si", 202,4), (8, "Honda", "Civic", "Type R", 303,4)
+
+```
+```{sql, connection = vd}
+INSERT INTO cardata VALUES(9, "Jeep", "Grand Cherokee", "Limited", 280, 6), (10, "Jeep", "Wrangler", "Unlimited", 280, 6), (11, "Chevrolet", "Camaro","ZL1", 650, 8), (12, "Chevrolet", "Camaro", "SS", 455, 8), (13, "Dodge", "Challenger", "GT", 305, 6),(14, "Ford","Mustang", "GT350", 528, 8), (13, "Audi", "RS3", "RS3", 394, 5), (14, "Audi", "RS5", "RS5", 444, 6), (15, "Chevrolet", "Equinox","Premier", 165, 4)
+```
+
+```{sql, connection = vd}
+SELECT * FROM cardata
+WHERE make = "Dodge"
+ORDER BY cylinders
+
+```
 
