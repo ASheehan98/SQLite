@@ -47,13 +47,35 @@ INSERT INTO cardata VALUES (1, "Ford", "Focus", "ST", 250, 4), (2, "Volkswagen",
 
 ```
 ```{sql, connection = vd}
-INSERT INTO cardata VALUES(9, "Jeep", "Grand Cherokee", "Limited", 280, 6), (10, "Jeep", "Wrangler", "Unlimited", 280, 6), (11, "Chevrolet", "Camaro","ZL1", 650, 8), (12, "Chevrolet", "Camaro", "SS", 455, 8), (13, "Dodge", "Challenger", "GT", 305, 6),(14, "Ford","Mustang", "GT350", 528, 8), (13, "Audi", "RS3", "RS3", 394, 5), (14, "Audi", "RS5", "RS5", 444, 6), (15, "Chevrolet", "Equinox","Premier", 165, 4)
+INSERT INTO cardata VALUES(9, "Jeep", "Grand Cherokee", "Limited", 280, 6), (10, "Jeep", "Wrangler", "Unlimited", 280, 6), (11, "Chevrolet", "Camaro","ZL1", 650, 8), (12, "Chevrolet", "Camaro", "SS", 455, 8), (13, "Dodge", "Challenger", "GT", 305, 6),(14, "Ford","Mustang", "GT350", 528, 8), (15, "Audi", "RS3", "RS3", 394, 5), (16, "Audi", "RS5", "RS5", 444, 6), (17, "Chevrolet", "Equinox","Premier", 165, 4)
 ```
 
 ```{sql, connection = vd}
 SELECT * FROM cardata
-WHERE make = "Dodge"
-ORDER BY cylinders
+```
+
+```{sql, connection = vd}
+CREATE TABLE aspiration (id INTEGER, aspiration_type TEXT)
+```
+
+```{sql, connection = vd}
+SELECT * FROM cardata
 
 ```
+
+```{sql, connection = vd}
+INSERT INTO aspiration VALUES (1, "Turbocharged"), (2, "Turbocharged"), (3, "NA"), (4, "Supercharged"), (5, "Supercharged"), (6, "Supercharged"), (7, "NA"), (8, "Turbocharged"), (9, "NA"), (10, "NA"), (11, "Supercharged"), (12, "NA"), (13, "NA"), (14, "NA"), (15, "Turbocharged"), (16, "NA"),(17,"NA")
+```
+
+```{sql, connection = vd}
+SELECT * FROM aspiration
+```
+
+```{sql, connection = vd}
+SELECT cardata.id, cardata.make, cardata.model, cardata.trim, cardata.hp, cardata.cylinders,aspiration.aspiration_type
+FROM cardata
+INNER JOIN aspiration
+ON cardata.id = aspiration.id
+```
+
 
